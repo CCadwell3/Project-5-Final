@@ -17,9 +17,6 @@ public class Enemy : Pawn
     [SerializeField]
     private Weapons[] StartingWeapons;
 
-    //vars for jumping
-    private bool grounded;
-
     //movement
     private float moveRight;
 
@@ -31,7 +28,6 @@ public class Enemy : Pawn
     public override void Awake()
     {
         rbpawn = GetComponent<Rigidbody>();//get rigidbody
-        grounded = true;//set grounded to true (say we are on the ground)
         RagOff();
         int selection = Random.Range(0, (StartingWeapons.Length - 1));//generate random number up to weapons length
         EquipWeapon(StartingWeapons[selection]);//use random number to assign a weapon to enemy
@@ -61,15 +57,7 @@ public class Enemy : Pawn
         base.Move(moveDirection);//call move from parent
     }
 
-    public override void Jump(Vector3 moveDirection)
-    {
-        if (grounded == true)//make sure we are on the ground
-        {
-            grounded = false;//set check flag to false (because we should be in the air)
-            anim.SetTrigger("Jump");//tell the animation to play
-            rbpawn.velocity = new Vector3(moveDirection.x, jumpForce, moveDirection.z);//add y axis jumpforce to current movement
-        }
-    }
+   
 
     public override void EquipWeapon(Weapons weaponToEquip)
     {
@@ -97,10 +85,6 @@ public class Enemy : Pawn
     //collision detection (right now to check if we are on the ground or not)
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("ground"))//if the item collided with has the tag "ground"
-        {
-            anim.ResetTrigger("Jump");//tell animation to stop
-            grounded = true;//set flag to true
-        }
+
     }
 }

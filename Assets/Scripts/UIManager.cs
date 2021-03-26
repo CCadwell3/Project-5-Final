@@ -1,9 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+
 
 public class UIManager : MonoBehaviour
 {
     private GameManager gameManager;
+    [SerializeField, Tooltip("Main audio control for everything")]
+    private AudioMixer mixer;
+
+
+    [SerializeField, Tooltip("The slider value vs decibel volume curve")]
+    private AnimationCurve volumeVsDecibels;
 
     [SerializeField]
     private Image weaponIcon;
@@ -14,42 +26,65 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text lifeText;
 
-    [Header("Pause Screen")]
-    public Image pauseScreen;
+    [Header("Prefab Canvas")]
+    public Canvas mainMenu;
+    public Canvas pauseMenu;
+    public Canvas gameOverMenu;
+    public Canvas settingsMenu;
+    [Header("Elements")]
+    public Button applyButton;
+    public Slider masterVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider effectsVolumeSlider;
+    public Toggle fullScreenToggle;
+    public Dropdown resolutionDropDown;
+    public Dropdown qualityDropDown;
+    public AudioSource audioSource;
 
-    public Button resumeButton;
-    public Button quitButton;
-    public Text pauseText;
-    public Text resumeButtonText;
-    public Text quitButtonText;
-
-    [Header("Game Over Screen")]
-    public Text gameOverText;
-
-    public Button gameOverResumeButton;
-    public Text gameOverResumeText;
-
+    public AudioClip buttonClick;
+    public AudioClip buttonHover;
+    public Resolution[] resolutions;
+    
     // Start is called before the first frame update
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();//find the GM
+        resolutions = Screen.resolutions;//get resolution array
+        //build dropdown for screen resolutions and quality levels
+        List<string> options = new List<string>();//create list to hold resolutions
 
-        //hide stuff .enabled does not properly hide buttons
-        pauseScreen.gameObject.SetActive(false);
-        resumeButton.gameObject.SetActive(false);
-        quitButton.gameObject.SetActive(false);
-        pauseText.gameObject.SetActive(false);
-        resumeButtonText.gameObject.SetActive(false);
-        quitButtonText.gameObject.SetActive(false);
-        gameOverText.gameObject.SetActive(false);
-        gameOverResumeButton.gameObject.SetActive(false);
-        gameOverResumeText.gameObject.SetActive(false);
+        resolutionDropDown.ClearOptions();//clear anything that might be there
+
+        for (int index = 0; index < resolutions.Length; index++)//loop through all possible resolutions system can use
+        {
+            options.Add(string.Format("{0} x {1}", resolutions[index].width, resolutions[index].height));//add each to the list
+        }
+
+        resolutionDropDown.AddOptions(options);//add list to the dropdown
+
+        // Build quality levels
+        qualityDropDown.ClearOptions();//clear anything that might already exist
+        qualityDropDown.AddOptions(QualitySettings.names.ToList());//add the quality levels to the dropdown
+
+        if (SceneManager.GetActiveScene().name == ("MainMenue"))//if we are in the main menu
+        {
+            DisablePauseMenu();
+            DisableSettings();
+        }
+        else if (SceneManager.GetActiveScene().name == ("Main"))
+        {
+            gameManager = FindObjectOfType<GameManager>();
+            DisableMain();
+            DisablePauseMenu();
+            DisableSettings();
+            DisableGameOver();
+        }
+        
     }
 
     // Update is called once per frame
     private void Update()
     {
-        lifeText.text = string.Format("X {0}", gameManager.lives);//update lives text
+            lifeText.text = string.Format("X {0}", gameManager.lives);//update lives text
 
         if (gameManager)//we have an active game manager
         {
@@ -61,51 +96,108 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-
-    public void PauseMenu()
+    
+    public void OnMouseOver()
     {
-        //show pause menu items
-        pauseScreen.gameObject.SetActive(true);
-        resumeButton.gameObject.SetActive(true);
-        quitButton.gameObject.SetActive(true);
-        pauseText.gameObject.SetActive(true);
-        resumeButtonText.gameObject.SetActive(true);
-        quitButtonText.gameObject.SetActive(true);
+        audioSource.PlayOneShot(buttonHover);
     }
-
-    public void ResumeGame()
+    public void ButtonClick()
     {
-        //resume game
-        //hide again
-        pauseScreen.gameObject.SetActive(false);
-        resumeButton.gameObject.SetActive(false);
-        quitButton.gameObject.SetActive(false);
-        pauseText.gameObject.SetActive(false);
-        resumeButtonText.gameObject.SetActive(false);
-        quitButtonText.gameObject.SetActive(false);
-        gameOverText.gameObject.SetActive(false);
-        gameManager.Unpause();
+        audioSource.PlayOneShot(buttonClick);
     }
-
-    public void GameOver()
+    //show pause menu
+    public void EnablePauseMenu()
     {
-        //show game over screen
-        pauseScreen.gameObject.SetActive(true);
-        quitButton.gameObject.SetActive(true);
-        gameOverText.gameObject.SetActive(true);
-        quitButtonText.gameObject.SetActive(true);
-        gameOverResumeButton.gameObject.SetActive(true);
-        gameOverResumeText.gameObject.SetActive(true);
+        pauseMenu.gameObject.SetActive(true);
     }
+    //clear all menus
+    public void DisablePauseMenu()
+    {
+        pauseMenu.gameObject.SetActive(false);
+    }
+    //show game over
+    public void EnableGameOverMenu()
+    {
+        gameOverMenu.gameObject.SetActive(true);
+    }
+    //exit game
+    public void QuitGame()
+    {
+        Application.Quit();//quit game
+        //#if is preprossor code, if unity editor is running, this statement is true
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;//stop editor
+#endif
+    }
+    //start the game
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Main");
+    }
+    //resume from game over screen
     public void GameOverResume()
     {
-        //resume game
-        //hide again
-        pauseScreen.gameObject.SetActive(false);
-        quitButton.gameObject.SetActive(false);
-        gameOverText.gameObject.SetActive(false);
-        quitButtonText.gameObject.SetActive(false);
-        gameOverResumeButton.gameObject.SetActive(false);
-        gameOverResumeText.gameObject.SetActive(false);
+        gameOverMenu.gameObject.SetActive(false);
     }
+
+    //settings
+    //show settings menue
+    public void EnableSettings()
+    {
+        settingsMenu.gameObject.SetActive(true);
+
+        //set volume sliders to whatever they are in player prefs, if non existant, set to max value
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("Master Volume", masterVolumeSlider.maxValue);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("Music Volume", musicVolumeSlider.maxValue);
+        effectsVolumeSlider.value = PlayerPrefs.GetFloat("Effects Volume", effectsVolumeSlider.maxValue);
+
+        fullScreenToggle.isOn = Screen.fullScreen;//check or uncheck box based on screen status
+        qualityDropDown.value = QualitySettings.GetQualityLevel();//set dropdown to current state
+        applyButton.interactable = false;//no touching the apply button
+    }
+    //hides settings menu
+    public void DisableSettings()
+    {
+        settingsMenu.gameObject.SetActive(false);
+    }
+    //shows main menu
+    public void EnableMain()
+    {
+        mainMenu.gameObject.SetActive(true);
+    }
+    //hides main menu
+    public void DisableMain() 
+    {
+        mainMenu.gameObject.SetActive(false);
+    }
+    //hide pause menu
+    public void DisableGameOver()
+    {
+        gameOverMenu.gameObject.SetActive(false);
+    }
+
+    //apply settings
+
+    //be sure to use dynamic functions in inspector
+    public void SetQuality(int index)
+    {
+        QualitySettings.SetQualityLevel(index);//pass the dropdown selection to qualitylevel
+    }
+    public void SetResolution(int index)
+    {
+        
+        Resolution resolution = resolutions[index];//pass index to resolution array
+        Screen.SetResolution(resolution.width, resolution.height, fullScreenToggle);//set resolution and fullscreen
+    }
+
+    public void BarUpdate()
+    {
+        mixer.SetFloat("masterVolume", volumeVsDecibels.Evaluate(masterVolumeSlider.value));//use the animation curve to set volume
+        Debug.Log(masterVolumeSlider.value);
+        mixer.SetFloat("musicVolume", volumeVsDecibels.Evaluate(musicVolumeSlider.value));
+        Debug.Log(musicVolumeSlider.value);
+        mixer.SetFloat("effectsVolume", volumeVsDecibels.Evaluate(effectsVolumeSlider.value));
+        Debug.Log(effectsVolumeSlider.value);
+    }
+
 }

@@ -12,6 +12,7 @@ public class Pawn : MonoBehaviour
     public Rigidbody rbpawn;
     public NavMeshAgent nav;
 
+
     public virtual void Awake()
     {
         RagOff();//stop ragdoll
@@ -99,6 +100,10 @@ public class Pawn : MonoBehaviour
 
         mainBody.isKinematic = true;//turn off physics for main rigidbody
         mainCol.enabled = false;//turn off main collider
+
+        
+
+        
     }
 
     public void RagOff()

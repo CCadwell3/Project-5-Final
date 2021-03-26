@@ -1313,8 +1313,11 @@ MonoBehaviour:
   maxHealth: 400
   percent: 0
   isDead: 0
-  aud: {fileID: 9002613743020452615}
-  deathNoise: {fileID: 8300000, guid: 22ad7bd5c2dcc954a9e096288c9a6fa6, type: 3}
+  deathSound: {fileID: 8300000, guid: 22ad7bd5c2dcc954a9e096288c9a6fa6, type: 3}
+  hitsounds:
+  - {fileID: 8300000, guid: 8c433169cf24534459f8627281bbbdef, type: 3}
+  - {fileID: 8300000, guid: 0615d21f5980c4b45bcebe2c94b9e4c4, type: 3}
+  audiosource: {fileID: 9002613743020452615}
 --- !u!114 &3473654340518461549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,8 +1378,8 @@ AudioSource:
   m_GameObject: {fileID: 3572140881905356317}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 22ad7bd5c2dcc954a9e096288c9a6fa6, type: 3}
+  OutputAudioMixerGroup: {fileID: 1106532339747544707, guid: 6c49663d5513f5140a22f1c494518f9d, type: 2}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

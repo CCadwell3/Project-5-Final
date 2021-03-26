@@ -4,13 +4,13 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     private GameManager gameManager;
-    public Image bar;
+    public Material bar;
 
     // Start is called before the first frame update
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        bar = GetComponent<Image>();
+        bar = GetComponent<Image>().material;//get material from image object
     }
 
     // Update is called once per frame
@@ -21,8 +21,10 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealthBarColor(float value)
     {
-        bar.fillAmount = value;//set fill ammount for bar
+        bar.SetFloat("_FillLevel", value);//set fill ammount for orb
 
+        /*old code from color changing life bar
+         * 
         if (bar.fillAmount < 0.2f)//if less than 20% health
         {
             bar.color = Color.red;//assign color to health bar
@@ -35,5 +37,6 @@ public class HealthBar : MonoBehaviour
         {
             bar.color = Color.green;//green bar
         }
+        */
     }
 }

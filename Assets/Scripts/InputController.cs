@@ -22,11 +22,11 @@ public class InputController : Controller
         //call rotate towards mouse
         pawn.RotateTowards(GetMousePosition());
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Spell"))
         {
-            pawn.Jump(pawn.rbpawn.velocity);//call jump function using current movement
+            //add spell attack
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Primary Attack"))
         {
             if (pawn.equippedWeapon)//make sure there is a weapon equipped
             {
@@ -34,7 +34,7 @@ public class InputController : Controller
                 pawn.equippedWeapon.MainAttackDown();
             }
         }
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Primary Attack"))
         {
             if (pawn.equippedWeapon)//make sure there is a weapon equipped
             {
@@ -42,7 +42,7 @@ public class InputController : Controller
                 pawn.equippedWeapon.MainAttackUp();
             }
         }
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Alt Attack"))
         {
             if (pawn.equippedWeapon)//if there is a weapon
             {
@@ -50,7 +50,7 @@ public class InputController : Controller
                 pawn.equippedWeapon.AltAttackDown();
             }
         }
-        if (Input.GetButtonUp("Fire2"))
+        if (Input.GetButtonUp("Alt Attack"))
         {
             if (pawn.equippedWeapon)//if there is a weapon
             {
@@ -58,11 +58,11 @@ public class InputController : Controller
                 pawn.equippedWeapon.AltAttackUp();
             }
         }
-        if (Input.GetKeyDown("p") && GameManager.instance.paused == false)
+        if (Input.GetButtonDown("Menu") && GameManager.instance.paused == false)
         {
             GameManager.instance.Pause();
         }
-        else if (Input.GetKeyDown("p") && GameManager.instance.paused == true)
+        else if (Input.GetButtonDown("Menu") && GameManager.instance.paused == true)
         {
             GameManager.instance.Unpause();
         }
