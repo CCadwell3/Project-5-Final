@@ -11,6 +11,7 @@ public class Pawn : MonoBehaviour
     public Weapons equippedWeapon;
     public Rigidbody rbpawn;
     public NavMeshAgent nav;
+    public Weapons equippedSpell;
 
 
     public virtual void Awake()
@@ -43,6 +44,9 @@ public class Pawn : MonoBehaviour
     }
 
     public virtual void EquipWeapon(Weapons weaponToEquip)
+    {
+    }
+    public virtual void EquipSpell(Weapons spellToEquip)
     {
     }
 
@@ -100,10 +104,6 @@ public class Pawn : MonoBehaviour
 
         mainBody.isKinematic = true;//turn off physics for main rigidbody
         mainCol.enabled = false;//turn off main collider
-
-        
-
-        
     }
 
     public void RagOff()

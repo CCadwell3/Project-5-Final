@@ -9,6 +9,9 @@ using UnityEngine.Audio;
 
 public class UIManager : MonoBehaviour
 {
+    //remember to add footsteps
+
+
     private GameManager gameManager;
     [SerializeField, Tooltip("Main audio control for everything")]
     private AudioMixer mixer;

@@ -183,10 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d94abe51235ace4d906682640d7a7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   icon: {fileID: 21300000, guid: 7250044204fe1ee459fac663e7cdb93a, type: 3}
-  weaponDamage: 100
-  projectilePrefab: {fileID: 2889120576676404249, guid: 502d1a11dc5734b4183b7acfdd0be7e0, type: 3}
-  projectileSpeed: 25
+  weaponDamage: 35
+  projectilePrefab: {fileID: 1485669821089164163, guid: 0641ae43d99d00d42bdfb6cb0814d7f0, type: 3}
   thrown: {fileID: 0}
   rightHandPoint: {fileID: 118766760681251217}
   leftHandPoint: {fileID: 118766760505255407}
@@ -250,7 +250,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnSpellDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSpellUp:
+    m_PersistentCalls:
+      m_Calls: []
   pawn: {fileID: 0}
+  spellParticle: {fileID: 0}
 --- !u!1 &118766759960080494
 GameObject:
   m_ObjectHideFlags: 0

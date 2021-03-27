@@ -6,9 +6,6 @@ public class Enemy : Pawn
     [SerializeField, Tooltip("The max speed of the player")]
     private float speed = 6f;
 
-    [SerializeField, Tooltip("How high char can jump")]
-    private float jumpForce;
-
     public Health health;
 
     [SerializeField]
@@ -82,7 +79,6 @@ public class Enemy : Pawn
         base.EquipWeapon(weaponToEquip);
     }
 
-    //collision detection (right now to check if we are on the ground or not)
     private void OnCollisionEnter(Collision collision)
     {
 

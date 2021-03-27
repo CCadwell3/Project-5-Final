@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4279441297495828096}
-  m_LocalRotation: {x: -0.7156376, y: 0.48681104, z: -0.20531912, w: 0.4568609}
-  m_LocalPosition: {x: -0.15464163, y: 0.62131953, z: -7.4827557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -27, y: 124, z: -97}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4279441297495030400
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -125,28 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913b33b62c6e74c4f9b56bfe98d69e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
-  projectilePrefab: {fileID: 1040845234977951405}
-  projectileSpeed: 25
-  thrown: {fileID: 1040845234977951405}
-  rightHandPoint: {fileID: 0}
-  leftHandPoint: {fileID: 0}
-  OnMainAttackDown:
-    m_PersistentCalls:
-      m_Calls: []
-  OnMainAttackUp:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAltAttackDown:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAltAttackUp:
-    m_PersistentCalls:
-      m_Calls: []
-  pawn: {fileID: 0}
-  owner: {fileID: 0}
-  origin: {fileID: 0}
   ttl: 5
-  projectileDamage: 25
+  projectileDamage: 50
+  projectileSpeed: 25
   rbAmmo: {fileID: 9092122848892848390}
   from: {fileID: 0}

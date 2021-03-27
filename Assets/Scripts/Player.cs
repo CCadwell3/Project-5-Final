@@ -11,13 +11,7 @@ public class Player : Pawn
     [SerializeField, Tooltip("Character's turning speed")]
     private float rotateSpeed = 90;
 
-    [SerializeField, Tooltip("How high char can jump")]
-    private float jumpForce;
-
     public Health health;
-
-    //vars for jumping
-    private bool grounded;
 
     //movement
     private float moveRight;
@@ -27,9 +21,11 @@ public class Player : Pawn
     [SerializeField]
     private Transform weaponContainer;
 
+    [SerializeField]
+    private Transform spellContainer;
+
     public override void Awake()
     {
-        grounded = true;//set grounded to true (say we are on the ground)
         base.Awake();
     }
 
@@ -72,18 +68,6 @@ public class Player : Pawn
         }
     }
 
-    public override void Jump(Vector3 moveDirection)
-    {
-        if (grounded == true)//make sure we are on the ground
-        {
-            rbpawn.velocity = new Vector3(moveDirection.x, jumpForce, moveDirection.z);//add y axis jumpforce to current movement
-
-            anim.SetTrigger("Jump");//tell the animation to play
-
-            grounded = false;//set check flag to false (because we should be in the air)
-        }
-    }
-
     public override void EquipWeapon(Weapons weaponToEquip)
     {
         if (!equippedWeapon)
@@ -105,13 +89,35 @@ public class Player : Pawn
         }
         base.EquipWeapon(weaponToEquip);
     }
+    public override void EquipSpell(Weapons spellToEquip)
+    {
+        if (!equippedSpell)
+        {
+            equippedSpell = Instantiate(spellToEquip) as Weapons;//spawn weapon
+            equippedSpell.transform.parent = spellContainer;//set weapon container as weapons parent
+            equippedSpell.gameObject.layer = gameObject.layer;//assign weapon to parents layer                  -----new
+            equippedSpell.transform.localPosition = spellToEquip.transform.localPosition;//position weapon
+            equippedSpell.transform.localRotation = spellToEquip.transform.localRotation;//rotate weapon
+        }
+        else
+        {
+            Destroy(equippedWeapon.gameObject);//get rid of old weapon
+            equippedSpell = Instantiate(spellToEquip) as Weapons;//spawn weapon
+            equippedSpell.transform.parent = weaponContainer;//parent weapon to container (hold position)
+            equippedSpell.gameObject.layer = gameObject.layer;//assign weapon to parents layer                  -----new
+            equippedSpell.transform.localPosition = spellToEquip.transform.localPosition;//position weapon
+            equippedSpell.transform.localRotation = spellToEquip.transform.localRotation;//rotate weapon
+        }
+        base.EquipSpell(spellToEquip);
+    }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("ground"))//if the item collided with has the tag "ground"
         {
             anim.ResetTrigger("Jump");//tell animation to stop
-            grounded = true;//set flag to true
         }
     }
 }

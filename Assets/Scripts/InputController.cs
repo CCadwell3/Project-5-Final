@@ -22,10 +22,7 @@ public class InputController : Controller
         //call rotate towards mouse
         pawn.RotateTowards(GetMousePosition());
 
-        if (Input.GetButtonDown("Spell"))
-        {
-            //add spell attack
-        }
+        
         if (Input.GetButtonDown("Primary Attack"))
         {
             if (pawn.equippedWeapon)//make sure there is a weapon equipped
@@ -58,6 +55,7 @@ public class InputController : Controller
                 pawn.equippedWeapon.AltAttackUp();
             }
         }
+        
         if (Input.GetButtonDown("Menu") && GameManager.instance.paused == false)
         {
             GameManager.instance.Pause();
@@ -66,7 +64,14 @@ public class InputController : Controller
         {
             GameManager.instance.Unpause();
         }
-
+        if (Input.GetButtonDown("Spell"))
+        {
+            pawn.equippedSpell.SpellFireDown();
+        }
+        if (Input.GetButtonUp("Spell"))
+        {
+            pawn.equippedSpell.SpellFireUp();
+        }
         base.Update();//run update from controller
     }
 

@@ -1242,8 +1242,8 @@ MonoBehaviour:
   equippedWeapon: {fileID: 0}
   rbpawn: {fileID: 7638177962110571071}
   nav: {fileID: 1539106760074264938}
+  equippedSpell: {fileID: 0}
   speed: 1
-  jumpForce: 0
   health: {fileID: 869057707634234455}
   drops: {fileID: 3473654340518461549}
   StartingWeapons:
@@ -1310,7 +1310,7 @@ MonoBehaviour:
         m_CallState: 2
   ragTimer: 3
   health: 100
-  maxHealth: 400
+  maxHealth: 100
   percent: 0
   isDead: 0
   deathSound: {fileID: 8300000, guid: 22ad7bd5c2dcc954a9e096288c9a6fa6, type: 3}

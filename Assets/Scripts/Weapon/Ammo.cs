@@ -1,30 +1,29 @@
 using UnityEngine;
 
-public class Ammo : Weapons
+public class Ammo : MonoBehaviour
 {
     [Header("Projectile Behavior")]
     public float ttl = 5;
-
     public float projectileDamage = 25;
+    public float projectileSpeed;
     public Rigidbody rbAmmo;
     public Transform from;
 
     // Start is called before the first frame update
-    public override void Start()
+    public void Start()
     {
-        from = transform.root.GetComponent<Transform>();
+        from = transform.root.Find("FirePoint");
+        rbAmmo.velocity = transform.TransformDirection(Vector3.forward * projectileSpeed); ;//add speed to projectile
         transform.parent = null;//remove parent
         Destroy(gameObject, ttl);//destroy after time to live expires
-        base.Start();
     }
 
     // Update is called once per frame
-    public override void Update()
+    public void Update()
     {
-        base.Update();
     }
 
-    public override void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         GameObject collidedWith = other.gameObject;//reference what we hit
         Health collidedWithHealth = collidedWith.GetComponent<Health>();//reference the health component on other object

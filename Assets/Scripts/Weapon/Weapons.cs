@@ -10,29 +10,28 @@ public abstract class Weapons : MonoBehaviour
     [Header("Damage")]
     public float weaponDamage = 100;
 
-    [Header("Projectile Behavior")]
+    [Header("Projectile Setup")]
     public Ammo projectilePrefab;
-
-    public float projectileSpeed = 25;
     public Ammo thrown;
 
     [Header("IK Points")]
     public Transform rightHandPoint;
-
     public Transform leftHandPoint;
 
     [Header("Events")]
     public UnityEvent OnMainAttackDown;
-
     public UnityEvent OnMainAttackUp;
     public UnityEvent OnAltAttackDown;
     public UnityEvent OnAltAttackUp;
+    public UnityEvent OnSpellDown;
+    public UnityEvent OnSpellUp;
 
     [Header("Character")]
     public Pawn pawn;
-
     private GameObject owner;
     private Transform origin;
+    [SerializeField]
+    private ParticleSystem spellParticle;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -42,6 +41,14 @@ public abstract class Weapons : MonoBehaviour
             pawn = transform.root.GetComponent<Pawn>();
             owner = pawn.gameObject;
             origin = owner.transform.Find("FirePoint");
+            if (pawn.equippedWeapon != null)
+            {
+                if (pawn.equippedWeapon.GetComponent<ParticleSystem>() != null)//if the pawn has a particlesystem
+                {
+                    spellParticle = pawn.equippedWeapon.GetComponent<ParticleSystem>();//assign component
+                }
+            }
+           
         }   
     }
 
@@ -70,6 +77,15 @@ public abstract class Weapons : MonoBehaviour
     public virtual void AltAttackUp()
     {
         OnAltAttackUp.Invoke();
+    }
+
+    public virtual void SpellFireDown()
+    {
+        OnSpellDown.Invoke();
+    }
+    public virtual void SpellFireUp()
+    {
+        OnSpellUp.Invoke();
     }
 
     //Longsword
@@ -163,6 +179,10 @@ public abstract class Weapons : MonoBehaviour
     {
         //nothing -- This fires on attack down
     }
+    public virtual void FireBallSpell()
+    {
+        FireSpell(origin);
+    }
 
     public void Throw(Transform origin)
     {
@@ -171,8 +191,23 @@ public abstract class Weapons : MonoBehaviour
         Ammo thrownScript = thrown.GetComponent<Ammo>();//get component from new projectile
         thrown.gameObject.layer = gameObject.layer;//assign thrown object to parent objecst layer
         thrownScript.from = origin;
-        thrown.rbAmmo.AddRelativeForce(origin.forward * projectileSpeed, ForceMode.VelocityChange);//add speed to projectile
     }
+
+
+    public void FireSpell(Transform origin)
+    {
+        Ammo spell = Instantiate(projectilePrefab, origin.position, origin.rotation, origin) as Ammo;//create projectile object
+        Ammo spellScript = spell.GetComponent<Ammo>();//get component from new projectile
+        spell.gameObject.layer = gameObject.layer;//assign thrown object to parent objecst layer
+        spellScript.from = origin;
+        
+    }
+
+
+
+
+
+
 
     //collision events
     public virtual void OnCollisionEnter(Collision collision)
