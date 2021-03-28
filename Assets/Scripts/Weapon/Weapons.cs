@@ -7,6 +7,8 @@ public abstract class Weapons : MonoBehaviour
 
     public Sprite icon = null;//holder for visuals
 
+    
+    
     [Header("Damage")]
     public float weaponDamage = 100;
 
@@ -30,8 +32,6 @@ public abstract class Weapons : MonoBehaviour
     public Pawn pawn;
     private GameObject owner;
     private Transform origin;
-    [SerializeField]
-    private ParticleSystem spellParticle;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -41,14 +41,6 @@ public abstract class Weapons : MonoBehaviour
             pawn = transform.root.GetComponent<Pawn>();
             owner = pawn.gameObject;
             origin = owner.transform.Find("FirePoint");
-            if (pawn.equippedWeapon != null)
-            {
-                if (pawn.equippedWeapon.GetComponent<ParticleSystem>() != null)//if the pawn has a particlesystem
-                {
-                    spellParticle = pawn.equippedWeapon.GetComponent<ParticleSystem>();//assign component
-                }
-            }
-           
         }   
     }
 
@@ -203,15 +195,10 @@ public abstract class Weapons : MonoBehaviour
         
     }
 
-
-
-
-
-
-
     //collision events
     public virtual void OnCollisionEnter(Collision collision)
     {
+        
     }
 
     public virtual void OnTriggerEnter(Collider thingWeHit)//make sure to use collider and not collision.  Pass in weapon damage from weapon
@@ -226,6 +213,8 @@ public abstract class Weapons : MonoBehaviour
                     {
                         Health health = thingWeHit.GetComponent<Health>();//reference for health component of object we are hitting
                         health.Damage(weaponDamage);//call objects damage function, give it the weapon damage of equipped weapon
+                        AudioSource aud = pawn.GetComponent<AudioSource>();//get audio source
+                        aud.PlayOneShot(pawn.hitSound);//play hit sound
                     }
                     else
                     {

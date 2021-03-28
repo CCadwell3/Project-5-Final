@@ -27,9 +27,9 @@ public class Health : Pickups
 
     public bool isDead = false;
 
-    public AudioClip deathSound;
-    public AudioClip[] hitsounds;
+    [Header("Sounds")]
     public AudioSource audiosource;
+    public AudioClip deathSound;
 
     // Start is called before the first frame update
     public override void Start()
@@ -48,9 +48,6 @@ public class Health : Pickups
     //how to handle damage
     public void Damage(float damage)
     {
-        int rnd = Random.Range(0, hitsounds.Length - 1);//get random number
-        audiosource.PlayOneShot(hitsounds[rnd]);//play a random hit sound
-
         damage = Mathf.Max(damage, 0);//make sure damage is a positive number
 
         if (damage > health)//if damage is greater than current health

@@ -237,5 +237,12 @@ public class GameManager : MonoBehaviour
         paused = false;//paused bool off
         lives = 4;//reset lives
         instance.onGameOverResume.Invoke();//resume event
+        //clear enemies
+        Enemy[] e = FindObjectsOfType<Enemy>();//get a list of all the enemys
+        for (int i = 0; i < e.Length; i++)
+        {
+            e[i].health.Damage(10000);//damage enemy with 10000 points
+            i++;//increment counter
+        }
     }
 }

@@ -1243,6 +1243,8 @@ MonoBehaviour:
   rbpawn: {fileID: 7638177962110571071}
   nav: {fileID: 1539106760074264938}
   equippedSpell: {fileID: 0}
+  hitParticle: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 5eef3c25a50b7644bb4e671d5af22a04, type: 3}
   speed: 1
   health: {fileID: 869057707634234455}
   drops: {fileID: 3473654340518461549}
@@ -1313,11 +1315,8 @@ MonoBehaviour:
   maxHealth: 100
   percent: 0
   isDead: 0
-  deathSound: {fileID: 8300000, guid: 22ad7bd5c2dcc954a9e096288c9a6fa6, type: 3}
-  hitsounds:
-  - {fileID: 8300000, guid: 8c433169cf24534459f8627281bbbdef, type: 3}
-  - {fileID: 8300000, guid: 0615d21f5980c4b45bcebe2c94b9e4c4, type: 3}
   audiosource: {fileID: 9002613743020452615}
+  deathSound: {fileID: 8300000, guid: 22ad7bd5c2dcc954a9e096288c9a6fa6, type: 3}
 --- !u!114 &3473654340518461549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,11 +1333,11 @@ MonoBehaviour:
   - itemToDrop: {fileID: 7949076543745193246, guid: 201b51f98e9791141af8e23142271aec, type: 3}
     weight: 25
   - itemToDrop: {fileID: 8474917997225267358, guid: 15eae5c206e54ba4b8dc7aa6abbe81bb, type: 3}
-    weight: 200
+    weight: 25
   - itemToDrop: {fileID: 2535490982793998258, guid: 8771dbdbbd60b92498f1c9c67e22b483, type: 3}
-    weight: 15
+    weight: 25
   - itemToDrop: {fileID: 5880666301176036059, guid: 31f2eb5f9fc3c3946a979b0d46676070, type: 3}
-    weight: 500
+    weight: 50
 --- !u!114 &5404142966719687041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,11 +1363,11 @@ Rigidbody:
   m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!82 &9002613743020452615
 AudioSource:
   m_ObjectHideFlags: 0

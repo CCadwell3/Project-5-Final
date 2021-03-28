@@ -70,7 +70,6 @@ public class UIManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == ("MainMenue"))//if we are in the main menu
         {
-            DisablePauseMenu();
             DisableSettings();
         }
         else if (SceneManager.GetActiveScene().name == ("Main"))
@@ -188,19 +187,20 @@ public class UIManager : MonoBehaviour
     }
     public void SetResolution(int index)
     {
-        
         Resolution resolution = resolutions[index];//pass index to resolution array
         Screen.SetResolution(resolution.width, resolution.height, fullScreenToggle);//set resolution and fullscreen
     }
-
+    public void ScreenToggle(bool toggle)
+    {
+        Screen.fullScreen = toggle;
+    }
     public void BarUpdate()
     {
         mixer.SetFloat("masterVolume", volumeVsDecibels.Evaluate(masterVolumeSlider.value));//use the animation curve to set volume
-        Debug.Log(masterVolumeSlider.value);
         mixer.SetFloat("musicVolume", volumeVsDecibels.Evaluate(musicVolumeSlider.value));
-        Debug.Log(musicVolumeSlider.value);
         mixer.SetFloat("effectsVolume", volumeVsDecibels.Evaluate(effectsVolumeSlider.value));
-        Debug.Log(effectsVolumeSlider.value);
+        //save playerprefs
+
     }
 
 }

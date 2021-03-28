@@ -33,4 +33,12 @@ public class LongSword : Weapons
     {
         base.AltAttackUp();
     }
+    public override void OnTriggerEnter(Collider thingWeHit)
+    {  
+        base.OnTriggerEnter(thingWeHit);
+    }
+    public override void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
+    }
 }

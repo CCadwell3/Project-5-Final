@@ -24,4 +24,8 @@ public class Fireball : Weapons
     {
         base.SpellFireUp();
     }
+    public override void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
+    }
 }

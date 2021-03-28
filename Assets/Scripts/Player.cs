@@ -110,14 +110,4 @@ public class Player : Pawn
         }
         base.EquipSpell(spellToEquip);
     }
-
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("ground"))//if the item collided with has the tag "ground"
-        {
-            anim.ResetTrigger("Jump");//tell animation to stop
-        }
-    }
 }

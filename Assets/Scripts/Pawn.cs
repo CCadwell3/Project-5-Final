@@ -7,12 +7,12 @@ public class Pawn : MonoBehaviour
 {
     //create  objects
     public Animator anim;
-
     public Weapons equippedWeapon;
     public Rigidbody rbpawn;
     public NavMeshAgent nav;
     public Weapons equippedSpell;
-
+    public ParticleSystem hitParticle;
+    public AudioClip hitSound;
 
     public virtual void Awake()
     {
