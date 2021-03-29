@@ -11,8 +11,6 @@ public class Pawn : MonoBehaviour
     public Rigidbody rbpawn;
     public NavMeshAgent nav;
     public Weapons equippedSpell;
-    public ParticleSystem hitParticle;
-    public AudioClip hitSound;
 
     public virtual void Awake()
     {

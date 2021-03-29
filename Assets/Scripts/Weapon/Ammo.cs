@@ -11,10 +11,10 @@ public class Ammo : MonoBehaviour
     public Rigidbody rbAmmo;
     public Transform from;
     public AudioSource aud;
-    [Header("Particles")]
-    public ParticleSystem particlePre;
-    public int particleTTL;
-    public AudioClip hitSound;
+    public float particleTTL;
+    [Header("Spells")]
+    public AudioClip spellHit;
+    public ParticleSystem spellParticle;
 
     // Start is called before the first frame update
     public void Start()
@@ -31,17 +31,42 @@ public class Ammo : MonoBehaviour
     }
     public void OnCollisionEnter(Collision collision)
     {
-        this.gameObject.transform.parent = collision.transform;
-        rbAmmo.constraints = RigidbodyConstraints.FreezeAll;
-        Destroy(gameObject, particleTTL);//destroy projectile
-        aud.PlayOneShot(hitSound);//play sound
-        ContactPoint contact = collision.GetContact(0);//get collision at index 0
-        Quaternion rot = Quaternion.Inverse(transform.rotation);//reverse direction
-        Vector3 pos = contact.point;//set position to contact point
-        ParticleSystem particle = (Instantiate(particlePre, pos, rot));//create particle
-        particle.Emit(1);//display 1 particle
-        
-        
+        if (collision.gameObject.GetComponent<HitFX>() != null)
+        {
+            //weapon projectiles
+            if (this.spellHit == null)//spells have their own hitsound, weapon ammo does not
+            {
+                aud.PlayOneShot(collision.gameObject.GetComponent<HitFX>().hitSound);//play sound
+
+                //stop projectile, and attach it to what it hit
+                transform.parent = collision.transform;
+                rbAmmo.constraints = RigidbodyConstraints.FreezeAll;
+                ContactPoint contact = collision.GetContact(0);//get collision at index 0
+                Quaternion rot = Quaternion.Inverse(transform.rotation);//reverse direction
+                Vector3 pos = contact.point;//set position to contact point
+                ParticleSystem particle = (Instantiate(collision.gameObject.GetComponent<HitFX>().hitParticle, pos, rot));//create particle
+                particle.Emit(1);//display 1 particle
+                Destroy(particle, particleTTL);//destroy particle
+            }
+            else
+            //spells
+            {
+                aud.PlayOneShot(spellHit);//play sound
+
+                //stop projectile, and attach it to what it hit
+                transform.parent = collision.transform;
+                rbAmmo.constraints = RigidbodyConstraints.FreezeAll;
+                ContactPoint contact = collision.GetContact(0);//get collision at index 0
+                Quaternion rot = Quaternion.Inverse(transform.rotation);//reverse direction
+                Vector3 pos = contact.point;//set position to contact point
+                ParticleSystem particle = (Instantiate(spellParticle, pos, rot));//create particle
+                particle.Emit(1);//display 1 particle
+                Destroy(particle, particleTTL);//destroy particle
+            }
+           
+            Destroy(gameObject, ttl);//destroy projectile
+        }
+
         if (collision.gameObject.GetComponent<Pawn>() != null)
         {
             Pawn pawn = collision.gameObject.GetComponent<Pawn>();//get pawn object from hit object
@@ -54,10 +79,4 @@ public class Ammo : MonoBehaviour
         }
         
     }
-    //can not use trigger and collision at the same time, setting an object to trigger disables collision
-    public void OnTriggerEnter(Collider other)
-     {
-        
-    }
-    
 }

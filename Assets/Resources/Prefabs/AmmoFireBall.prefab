@@ -4906,9 +4906,9 @@ MonoBehaviour:
   rbAmmo: {fileID: -4522827102319959293}
   from: {fileID: 0}
   aud: {fileID: 4435244707070755266}
-  particlePre: {fileID: 8964201501879405176, guid: f43f53e9dedacf44a881679f1c923897, type: 3}
   particleTTL: 1
-  hitSound: {fileID: 8300000, guid: 83a3d45944f24b647a973099cc6fb1d3, type: 3}
+  spellHit: {fileID: 8300000, guid: 15b61cecc9c413944b23744fbd523914, type: 3}
+  spellParticle: {fileID: 8964201501879405176, guid: f43f53e9dedacf44a881679f1c923897, type: 3}
 --- !u!82 &4435244707070755266
 AudioSource:
   m_ObjectHideFlags: 0

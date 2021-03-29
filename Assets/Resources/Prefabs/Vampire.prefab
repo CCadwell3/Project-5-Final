@@ -1104,6 +1104,8 @@ GameObject:
   - component: {fileID: 7638177962110571071}
   - component: {fileID: 9002613743020452615}
   - component: {fileID: 1539106760074264938}
+  - component: {fileID: 2249096898917579401}
+  - component: {fileID: 7918834533685054044}
   m_Layer: 6
   m_Name: Vampire
   m_TagString: Enemy
@@ -1243,8 +1245,6 @@ MonoBehaviour:
   rbpawn: {fileID: 7638177962110571071}
   nav: {fileID: 1539106760074264938}
   equippedSpell: {fileID: 0}
-  hitParticle: {fileID: 0}
-  hitSound: {fileID: 8300000, guid: 5eef3c25a50b7644bb4e671d5af22a04, type: 3}
   speed: 1
   health: {fileID: 869057707634234455}
   drops: {fileID: 3473654340518461549}
@@ -1300,7 +1300,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3473654340518461549}
         m_TargetAssemblyTypeName: Drops, Assembly-CSharp
-        m_MethodName: randomDrop
+        m_MethodName: RandomDrop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1486,6 +1486,34 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2249096898917579401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572140881905356317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6dea1b81adf60aa4bbcd5b0f9980258c, type: 3}
+  hitParticle: {fileID: 3354273891553815017, guid: ef10a41bedf7e2c4bb9873d37a7a8fed, type: 3}
+--- !u!114 &7918834533685054044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572140881905356317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c771e3d0d31544d88d7b17b8307861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aud: {fileID: 9002613743020452615}
+  footStep: {fileID: 8300000, guid: 7f1f9721cae42d54aa74d2daf6245537, type: 3}
 --- !u!1 &3572140881905356319
 GameObject:
   m_ObjectHideFlags: 0

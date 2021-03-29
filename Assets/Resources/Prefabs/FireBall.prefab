@@ -113,7 +113,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4885,8 +4885,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   icon: {fileID: 0}
-  particlePre: {fileID: 8964201501879405176, guid: f43f53e9dedacf44a881679f1c923897, type: 3}
-  particleTTL: 4
+  aud: {fileID: 0}
+  col: {fileID: 0}
   weaponDamage: 0
   projectilePrefab: {fileID: 4384735628841272902, guid: b63a762e85aec204e95e860c9b7f9344, type: 3}
   thrown: {fileID: 0}
@@ -4923,7 +4923,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   pawn: {fileID: 0}
-  SpellCollisionSound: {fileID: 8300000, guid: 15b61cecc9c413944b23744fbd523914, type: 3}
 --- !u!1 &6909700624252063247
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,10 @@ public abstract class Weapons : MonoBehaviour
 
     public Sprite icon = null;//holder for visuals
 
-    
-    
+    public AudioSource aud;
+
+    public Collider col;
+
     [Header("Damage")]
     public float weaponDamage = 100;
 
@@ -198,23 +200,31 @@ public abstract class Weapons : MonoBehaviour
     //collision events
     public virtual void OnCollisionEnter(Collision collision)
     {
-        
     }
-
     public virtual void OnTriggerEnter(Collider thingWeHit)//make sure to use collider and not collision.  Pass in weapon damage from weapon
     {
+
         if (GetComponentInParent<Health>().isDead == false)//make sure attacker is still alive.
         {
+
             if (isAttacking == true)
             {
+                if (thingWeHit.GetComponent<HitFX>() != null)
+                {
+                    
+                    aud.PlayOneShot(thingWeHit.gameObject.GetComponent<HitFX>().hitSound);
+                    Quaternion rot = Quaternion.Inverse(transform.rotation);//reverse direction
+                    Vector3 pos = thingWeHit.ClosestPointOnBounds(col.transform.position);//set position to contact point
+                    ParticleSystem particle = (Instantiate(thingWeHit.gameObject.GetComponent<HitFX>().hitParticle, pos, rot));//create particle
+                    particle.Emit(1);//display 1 particle
+                }
                 if (thingWeHit.transform.root.GetComponent<Pawn>())//if we run into a pawn object
                 {
-                    if (thingWeHit.GetComponent<Health>())//if target has a health component
+                    if (thingWeHit.gameObject.GetComponent<Health>())//if target has a health component
                     {
-                        Health health = thingWeHit.GetComponent<Health>();//reference for health component of object we are hitting
+                        Health health = thingWeHit.gameObject.GetComponent<Health>();//reference for health component of object we are hitting
                         health.Damage(weaponDamage);//call objects damage function, give it the weapon damage of equipped weapon
-                        AudioSource aud = pawn.GetComponent<AudioSource>();//get audio source
-                        aud.PlayOneShot(pawn.hitSound);//play hit sound
+
                     }
                     else
                     {
@@ -225,3 +235,4 @@ public abstract class Weapons : MonoBehaviour
         }
     }
 }
+

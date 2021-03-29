@@ -717,6 +717,7 @@ GameObject:
   - component: {fileID: 150195517}
   - component: {fileID: 150195516}
   - component: {fileID: 150195515}
+  - component: {fileID: 150195519}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -800,6 +801,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &150195519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150195514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &156622838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1251,7 @@ GameObject:
   - component: {fileID: 250572052}
   - component: {fileID: 250572051}
   - component: {fileID: 250572050}
+  - component: {fileID: 250572054}
   m_Layer: 0
   m_Name: Obstacle (8)
   m_TagString: Untagged
@@ -1319,6 +1335,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &250572054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250572049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &269631062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,6 +2352,7 @@ GameObject:
   - component: {fileID: 480553615}
   - component: {fileID: 480553614}
   - component: {fileID: 480553613}
+  - component: {fileID: 480553617}
   m_Layer: 0
   m_Name: Obstacle (2)
   m_TagString: Untagged
@@ -2405,70 +2436,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &501473090
-GameObject:
+--- !u!114 &480553617
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 501473092}
-  - component: {fileID: 501473091}
-  m_Layer: 0
-  m_Name: Reflection Probe
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!215 &501473091
-ReflectionProbe:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501473090}
+  m_GameObject: {fileID: 480553612}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Type: 0
-  m_Mode: 0
-  m_RefreshMode: 0
-  m_TimeSlicingMode: 0
-  m_Resolution: 128
-  m_UpdateFrequency: 0
-  m_BoxSize: {x: 20, y: 20, z: 10}
-  m_BoxOffset: {x: 0, y: 0, z: 0}
-  m_NearClip: 0.3
-  m_FarClip: 1000
-  m_ShadowDistance: 100
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IntensityMultiplier: 1
-  m_BlendDistance: 1
-  m_HDR: 1
-  m_BoxProjection: 0
-  m_RenderDynamicObjects: 0
-  m_UseOcclusionCulling: 1
-  m_Importance: 1
-  m_CustomBakedTexture: {fileID: 0}
---- !u!4 &501473092
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501473090}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.61, y: 0.96, z: 8.33519}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 32
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &526801737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,6 +2824,7 @@ GameObject:
   - component: {fileID: 664382192}
   - component: {fileID: 664382191}
   - component: {fileID: 664382190}
+  - component: {fileID: 664382194}
   m_Layer: 0
   m_Name: Obstacle (5)
   m_TagString: Untagged
@@ -2926,6 +2908,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &664382194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664382189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &694841494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2938,6 +2934,7 @@ GameObject:
   - component: {fileID: 694841497}
   - component: {fileID: 694841496}
   - component: {fileID: 694841495}
+  - component: {fileID: 694841499}
   m_Layer: 0
   m_Name: Obstacle (9)
   m_TagString: Untagged
@@ -3021,6 +3018,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &694841499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694841494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &695229150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3179,6 +3190,7 @@ GameObject:
   - component: {fileID: 698788843}
   - component: {fileID: 698788842}
   - component: {fileID: 698788841}
+  - component: {fileID: 698788845}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -3262,6 +3274,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &698788845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698788840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &701778680
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,6 +4946,7 @@ GameObject:
   - component: {fileID: 1026558207}
   - component: {fileID: 1026558206}
   - component: {fileID: 1026558205}
+  - component: {fileID: 1026558209}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -5003,6 +5030,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1026558209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026558204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &1033246120
 GameObject:
   m_ObjectHideFlags: 0
@@ -5317,6 +5358,7 @@ GameObject:
   - component: {fileID: 1100169444}
   - component: {fileID: 1100169443}
   - component: {fileID: 1100169442}
+  - component: {fileID: 1100169446}
   m_Layer: 0
   m_Name: Obstacle (4)
   m_TagString: Untagged
@@ -5400,6 +5442,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!114 &1100169446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100169441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &1104001630
 GameObject:
   m_ObjectHideFlags: 0
@@ -6431,6 +6487,7 @@ GameObject:
   - component: {fileID: 1453979814}
   - component: {fileID: 1453979813}
   - component: {fileID: 1453979812}
+  - component: {fileID: 1453979816}
   m_Layer: 0
   m_Name: Obstacle (1)
   m_TagString: Untagged
@@ -6514,6 +6571,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1453979816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453979811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &1471288199
 GameObject:
   m_ObjectHideFlags: 0
@@ -7475,6 +7546,7 @@ GameObject:
   - component: {fileID: 1757776162}
   - component: {fileID: 1757776161}
   - component: {fileID: 1757776160}
+  - component: {fileID: 1757776164}
   m_Layer: 0
   m_Name: Obstacle (3)
   m_TagString: Untagged
@@ -7558,6 +7630,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1757776164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757776159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &1794241424
 GameObject:
   m_ObjectHideFlags: 0
@@ -7941,6 +8027,7 @@ GameObject:
   - component: {fileID: 1884382219}
   - component: {fileID: 1884382218}
   - component: {fileID: 1884382217}
+  - component: {fileID: 1884382221}
   m_Layer: 0
   m_Name: Obstacle (7)
   m_TagString: Untagged
@@ -8024,6 +8111,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1884382221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884382216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &1901246409
 GameObject:
   m_ObjectHideFlags: 0
@@ -8344,6 +8445,7 @@ GameObject:
   - component: {fileID: 1944150662}
   - component: {fileID: 1944150661}
   - component: {fileID: 1944150660}
+  - component: {fileID: 1944150664}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -8427,6 +8529,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1944150664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944150659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &1953281218
 GameObject:
   m_ObjectHideFlags: 0
@@ -8781,6 +8897,7 @@ GameObject:
   - component: {fileID: 2018653722}
   - component: {fileID: 2018653721}
   - component: {fileID: 2018653720}
+  - component: {fileID: 2018653724}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -8864,6 +8981,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &2018653724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018653719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!82 &2029834959
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9051,6 +9182,7 @@ GameObject:
   - component: {fileID: 2083429694}
   - component: {fileID: 2083429693}
   - component: {fileID: 2083429692}
+  - component: {fileID: 2083429696}
   m_Layer: 0
   m_Name: Obstacle (6)
   m_TagString: Untagged
@@ -9134,6 +9266,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &2083429696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083429691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410cb32513d3504283551b55cc06e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 6066c158e93b9234c9d49a2c39f31092, type: 3}
+  hitParticle: {fileID: 3585276411689490308, guid: 58eb2be6d79918f478099f0c15dedceb, type: 3}
 --- !u!1 &2100833380
 GameObject:
   m_ObjectHideFlags: 0

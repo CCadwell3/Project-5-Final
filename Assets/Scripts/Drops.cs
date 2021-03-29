@@ -39,7 +39,7 @@ public class Drops : MonoBehaviour
     {
     }
 
-    public void randomDrop()
+    public void RandomDrop()
     {
         //get random number less than the value of the last cdf item(total cumulative value)
         int rnd = Random.Range(0, CDFArray[CDFArray.Count - 1]);

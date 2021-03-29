@@ -35,7 +35,6 @@ public class UIManager : MonoBehaviour
     public Canvas gameOverMenu;
     public Canvas settingsMenu;
     [Header("Elements")]
-    public Button applyButton;
     public Slider masterVolumeSlider;
     public Slider musicVolumeSlider;
     public Slider effectsVolumeSlider;
@@ -86,15 +85,19 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == ("Main"))//make sure we are in scene "Main"
+        {
             lifeText.text = string.Format("X {0}", gameManager.lives);//update lives text
 
-        if (gameManager)//we have an active game manager
-        {
-            if (gameManager.player.equippedWeapon != null)//and there is an equipped weapon
-                weaponIcon.overrideSprite = gameManager.player.equippedWeapon.icon;//stick the icon in the weapon icon slot
-            else
+
+            if (gameManager)//we have an active game manager
             {
-                weaponIcon.overrideSprite = unarmed;
+                if (gameManager.player.equippedWeapon != null)//and there is an equipped weapon
+                    weaponIcon.overrideSprite = gameManager.player.equippedWeapon.icon;//stick the icon in the weapon icon slot
+                else
+                {
+                    weaponIcon.overrideSprite = unarmed;
+                }
             }
         }
     }
@@ -147,15 +150,15 @@ public class UIManager : MonoBehaviour
     public void EnableSettings()
     {
         settingsMenu.gameObject.SetActive(true);
-
-        //set volume sliders to whatever they are in player prefs, if non existant, set to max value
-        masterVolumeSlider.value = PlayerPrefs.GetFloat("Master Volume", masterVolumeSlider.maxValue);
-        musicVolumeSlider.value = PlayerPrefs.GetFloat("Music Volume", musicVolumeSlider.maxValue);
-        effectsVolumeSlider.value = PlayerPrefs.GetFloat("Effects Volume", effectsVolumeSlider.maxValue);
+        
+        
+        //set volume sliders to whatever they are in player prefs
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("Master Volume", masterVolumeSlider.value);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("Music Volume", musicVolumeSlider.value);
+        effectsVolumeSlider.value = PlayerPrefs.GetFloat("Effects Volume", effectsVolumeSlider.value);
 
         fullScreenToggle.isOn = Screen.fullScreen;//check or uncheck box based on screen status
         qualityDropDown.value = QualitySettings.GetQualityLevel();//set dropdown to current state
-        applyButton.interactable = false;//no touching the apply button
     }
     //hides settings menu
     public void DisableSettings()
@@ -200,7 +203,11 @@ public class UIManager : MonoBehaviour
         mixer.SetFloat("musicVolume", volumeVsDecibels.Evaluate(musicVolumeSlider.value));
         mixer.SetFloat("effectsVolume", volumeVsDecibels.Evaluate(effectsVolumeSlider.value));
         //save playerprefs
-
+        //set volume sliders to whatever they are in player prefs, if non existant, set to max value
+        PlayerPrefs.SetFloat("Master Volume", masterVolumeSlider.value);
+        PlayerPrefs.SetFloat("Music Volume", musicVolumeSlider.value);
+        PlayerPrefs.SetFloat("Effects Volume", effectsVolumeSlider.value);
+        PlayerPrefs.Save();//save playerprefs
     }
 
 }
